@@ -1,0 +1,238 @@
+/*
+*
+*   Grid System (0.9.0)         <http://theplasticfactory.us/gs/>
+*   by Michael Johnson			<http://theplasticfactory.us/>
+*
+*   Based on:
+*   Golden Grid System (1.01)   <http://goldengridsystem.com/>
+*   by Joni Korpi               <http://jonikorpi.com/>
+*   licensed under MIT          <http://opensource.org/licenses/mit-license.php>
+*	
+*/
+/*
+*   Zoomable baseline grid
+*	type size presets
+*/
+body { font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
+.small { font-size: 0.8125em; line-height: 1.3846153846153846em;/* 13px / 18px */ }
+.normal, h3 { font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
+.large, h2, h1 { font-size: 1.625em; line-height: 1.3846153846153846em;/* 26 / 36px */ }
+.huge { font-size: 2.625em; line-height: 1.1428571428571428em;/* 42px / 48px */ }
+.massive { font-size: 4.25em; line-height: 1.0588235294117647em;/* 68px / 72px */ }
+.gigantic { font-size: 6.875em; line-height: 1.0909090909090908em;/* 110px / 120px */ }
+
+/*
+*   Add clearfix to our wrapper by default as most units are floated
+*/
+.g:before,
+.g:after { content: " "; display: table; }
+.g:after { clear: both; }
+.g { *zoom: 1; }
+
+/*
+*   `no-fold`: Helper class to set on `g` class element when want to 
+*   prevent auto-wrapping of elements using :nth psuedo class.
+*/
+.no-fold .u, .no-fold .u-1-16, .no-fold .u-2-16, .no-fold .u-3-16, 
+.no-fold .u-4-16, .no-fold .u-5-16, .no-fold .u-6-16, .no-fold .u-7-16, 
+.no-fold .u-8-16, .no-fold .u-9-16, .no-fold .u-10-16, .no-fold .u-11-16, 
+.no-fold .u-12-16, .no-fold .u-13-16, .no-fold .u-14-16, .no-fold .u-15-16, 
+.no-fold .u-16-16 { clear: none !important; }
+
+/*
+*
+*  Four-column grid active
+*  ----------------------------------------
+*  Margin   | #  1   2   3   4   |   Margin
+*  5.55555% | %  25  50  75  100 | 5.55555%
+*
+*/
+.g { margin: 0 5.555555555555555%; } /* `g` for `group` */
+
+h1, h2 { margin: 0.9230769230769231em 0 1.3846153846153846em; }
+h3 { margin: 1.5em 0 1.5em; }
+
+.u, /* `u` for `unit` */ 
+.u-1-16, .u-2-16, .u-3-16, .u-4-16, .u-5-16, .u-6-16, .u-7-16, 
+.u-8-16, .u-9-16, .u-10-16, .u-11-16, .u-12-16, .u-13-16, .u-14-16, 
+.u-15-16, .u-16-16 { 
+    float: left; 
+    min-height: 1px; 
+    width: 100%; 
+    padding: 0 0.75em; /* Simple elastic gutters */
+    /* `border-box` allows width to be calculated independent of padding
+     * <http://paulirish.com/2012/box-sizing-border-box-ftw/>
+     * <http://html5please.com/#box-sizing>
+    */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    /* `box-sizing` doesn't work in IE6-7, so we use a polyfill
+     * <https://github.com/Schepp/box-sizing-polyfill>
+    */
+    *behavior: url(/js/vendor/boxsizing.htc);
+}
+.u-16-16 { float: none !important; width: 100%; }
+
+/*
+*   If this is IE6- or IE7 w/o JS on, then serve up a default single
+*   column layout using Modernizr classes.
+*/
+.lt-ie7 body, 
+.no-js.lt-ie8 body { width: 40em; margin: 0 auto; font-size: 1.0625em; }
+.lt-ie7 body .g .u, 
+.no-js.lt-ie8 body .g .u { float: none !important; width: 100%; !important; }
+.lt-ie7 h1, 
+.no-js.lt-ie8 h1 { font-size: 2.625em; line-height: 1.1428571428571428em;/* 42px / 48px */ margin: 1.1428571428571428em 0 0.5714285714285714em; }
+
+/* 
+@media screen and (min-width: 640px) 
+*/
+@media screen and (min-width: 40em) {
+
+    body { font-size: 1.0625em; } /* Zoom baseline grid to 17/16 = 1.0625 */
+    h1 { font-size: 2.625em; line-height: 1.1428571428571428em;/* 42px / 48px */ margin: 1.1428571428571428em 0 0.5714285714285714em; }
+    
+    /* We use selectivizr.js for this to work in IE6-8,
+     * If no JS, would need to manually clear for these browsers.
+    */
+    .g .u:nth-child(odd) { clear: left; }
+    
+    .g .u-1-16 { width: 50%; }
+    .g .u-2-16 { width: 50%; }
+    .g .u-3-16 { width: 50%; }
+    .g .u-4-16 { width: 50%; }
+    .g .u-5-16 { width: 50%; }
+    .g .u-6-16 { width: 50%; }
+    .g .u-7-16 { width: 50%; }
+    .g .u-8-16 { width: 50%; }
+    .g .u-9-16 { width: 50%; }
+    .g .u-10-16 { width: 50%; }
+    .g .u-11-16 { width: 50%; }
+    .g .u-12-16 { width: 50%; }
+    .g .u-13-16 { width: 100%; }
+    .g .u-14-16 { width: 100%; }
+    .g .u-15-16 { width: 100%; }
+
+}
+
+/*
+*
+*   Eight-column grid active
+*   ----------------------------------------------------------------------
+*   Margin   | #  1     2     3     4     5     6     7     8   |   Margin
+*   5.55555% | %  12.5  25.0  37.5  50.0  62.5  75.0  87.5  100 | 5.55555%
+*	
+*
+*/
+/* 
+@media screen and (min-width: 720px) 
+*/
+@media screen and (min-width: 45em) {
+
+    body { font-size: 1em; } /* Reset baseline grid to 16/16 = 1 */
+    
+    .g .u:nth-child(odd) { clear: none; }
+    .g .u:nth-child(9n+0), 
+    .g .u-1-16:nth-child(9) { clear: left; }
+    
+    .g .u-1-16 { width: 12.5%; word-wrap: break-word; }
+    .g .u-2-16 { width: 12.5%; }
+    .g .u-3-16 { width: 12.5%; }
+    .g .u-4-16 { width: 25%; }
+    .g .u-5-16 { width: 25%; }
+    .g .u-6-16 { width: 37.5%; }
+    .g .u-7-16 { width: 37.5%; }
+    .g .u-9-16 { width: 62.5%; }
+    .g .u-10-16 { width: 62.5%; }
+    .g .u-11-16 { width: 75%; }
+    .g .u-12-16 { width: 75%; }
+    .g .u-13-16 { width: 87.5%; }
+    .g .u-14-16 { width: 87.5%; }
+    .g .u-15-16 { width: 87.5%; }
+    
+}
+
+/* 
+@media screen and (min-width: 888px) 
+*/
+@media screen and (min-width: 55.5em) {
+
+    body { font-size: 1.0625em; } /* Zoom baseline grid to 17/16 = 1.0625 */
+
+}
+
+/* 
+@media screen and (min-width: 984px) 
+*/
+@media screen and (min-width: 61.5em) {
+
+    body { font-size: 1em; } /* Reset baseline grid to 16/16 = 1.0 */
+
+}
+
+/* 
+@media screen and (min-width: 1200px) 
+*/
+@media screen and (min-width: 75em) {
+    
+    body { font-size: 1.0625em; } /* Zoom baseline grid to 17/16 = 1.0625 */
+    .g { margin: 0 10.478888888888884%; /* 16.666666666666664% */ }
+
+}
+
+/* 
+@media screen and (min-width: 1392px) 
+*/
+@media screen and (min-width: 87em) {
+
+    body { font-size: 1em; } /* Reset baseline grid to 16/16 = 1.0 */
+    .g { margin: 0 23.78%; } /* 27.77777777777778% */
+
+}
+
+/* 
+@media screen and (min-width: 1680px) 
+*/
+@media screen and (min-width: 105em) {
+
+    body { font-size: 1.0625em; } /* Zoom baseline grid to 17/16 = 1.0625 */
+
+}
+
+/*
+*
+*   Sixteen-column grid active
+*   ----------------------------------------------------------------------------------------------------------------------
+*   Margin   | #  1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16  |   Margin
+*   5.55555% | %  6.25  12.5  18.75 25.0  31.25 37.5  43.75 50.0  56.25 62.5  68.75 75.0  81.25 87.5  93.75 100 | 5.55555%
+*	
+*
+*/
+/* 
+@media screen and (min-width: 1872px) 
+*/
+@media screen and (min-width: 117em) {
+
+    .g .u { clear: none !important; }
+    
+    .g .col:first-child { margin-left: 0%; }
+    .g .u-1-16 { width: 6.25%; }
+    .g .u-3-16 { width: 18.75%; }
+    .g .u-5-16 { width: 31.25%; }
+    .g .u-7-16 { width: 43.75%; }
+    .g .u-9-16 { width: 56.25%; }
+    .g .u-11-16 { width: 68.75%; }
+    .g .u-13-16 { width: 81.25%; }
+    .g .u-15-16 { width: 93.75%; }
+        
+}
+
+/* 
+@media screen and (min-width: 2080px) 
+ */
+@media screen and (min-width: 130em) {
+
+    body { max-width: 160em; font-size: 1.125em; } /* Zoom baseline grid to 18/16 = 1.125 */
+    
+}
