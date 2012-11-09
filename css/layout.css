@@ -1,7 +1,7 @@
 /*
 *
 *   Grid System (0.9.0)         <http://theplasticfactory.us/gs/>
-*   by Michael Johnson			<http://theplasticfactory.us/>
+*   by Michael Johnson          <http://theplasticfactory.us/>
 *
 *   Based on:
 *   Golden Grid System (1.01)   <http://goldengridsystem.com/>
@@ -30,8 +30,8 @@ body { font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
 .g { *zoom: 1; }
 
 /*
-*   `no-fold`: Helper class to set on `g` class element when want to 
-*   prevent auto-wrapping of elements using :nth psuedo class.
+*   `no-fold` helper class on `g` element to prevent 
+*   auto-wrapping of elements from :nth-child.
 */
 .no-fold .u, .no-fold .u-1-16, .no-fold .u-2-16, .no-fold .u-3-16, 
 .no-fold .u-4-16, .no-fold .u-5-16, .no-fold .u-6-16, .no-fold .u-7-16, 
@@ -59,7 +59,8 @@ h3 { margin: 1.5em 0 1.5em; }
     float: left; 
     min-height: 1px; 
     width: 100%; 
-    padding: 0 0.75em; /* Simple elastic gutters */
+    /* Elastic gutters [(0.75 x 2) * 16 = 24px] */
+    padding: 0 0.75em; 
     /* `border-box` allows width to be calculated independent of padding
      * <http://paulirish.com/2012/box-sizing-border-box-ftw/>
      * <http://html5please.com/#box-sizing>
@@ -216,7 +217,7 @@ h3 { margin: 1.5em 0 1.5em; }
 
     .g .u { clear: none !important; }
     
-    .g .col:first-child { margin-left: 0%; }
+    .g .u:first-child { margin-left: 0%; }
     .g .u-1-16 { width: 6.25%; }
     .g .u-3-16 { width: 18.75%; }
     .g .u-5-16 { width: 31.25%; }
