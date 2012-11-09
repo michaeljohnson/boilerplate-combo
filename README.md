@@ -11,7 +11,3 @@ A responsive template, based on HTML5Boilerplate with bits integrated from vario
 * 320 and Up : [http://stuffandnonsense.co.uk/projects/320andup](http://stuffandnonsense.co.uk/projects/320andup)
 * Selectivizr : [http://selectivizr.com](http://selectivizr.com)
 * box-sizing-polyfill : [https://github.com/Schepp/box-sizing-polyfill](https://github.com/Schepp/box-sizing-polyfill)
-* xxx : [xxx](xxx)
-* xxx : [xxx](xxx)
-* xxx : [xxx](xxx)
-* xxx : [xxx](xxx)
