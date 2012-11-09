@@ -1,7 +1,7 @@
 [Boilerplate Combo](https://github.com/michaeljohnson/boilerplate-combo)
 =================
 
-A responsive template, based on HTML5Boilerplate with bits integrated from various sources.
+A responsive template, based on HTML5Boilerplate and bits integrated from various other sources.
 
 ## Sources
 
