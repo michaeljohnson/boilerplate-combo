@@ -59,8 +59,9 @@ h3 { margin: 1.5em 0 1.5em; }
     float: left; 
     min-height: 1px; 
     width: 100%; 
-    /* Elastic gutters [(0.75 x 2) * 16 = 24px] */
-    padding: 0 0.75em; 
+    margin: 0;
+    /* Elastic gutters [(0.5 x 2) * 16 = 16px] */
+    padding: 0 0.5em; 
     /* `border-box` allows width to be calculated independent of padding
      * <http://paulirish.com/2012/box-sizing-border-box-ftw/>
      * <http://html5please.com/#box-sizing>
@@ -152,6 +153,22 @@ h3 { margin: 1.5em 0 1.5em; }
     .g .u-14-16 { width: 87.5%; }
     .g .u-15-16 { width: 87.5%; }
     
+    .g .m-1-16 { margin-left: 12.5%; }
+    .g .m-2-16 { margin-left: 12.5%; }
+    .g .m-3-16 { margin-left: 12.5%; }
+    .g .m-4-16 { margin-left: 25%; }
+    .g .m-5-16 { margin-left: 25%; }
+    .g .m-6-16 { margin-left: 37.5%; }
+    .g .m-7-16 { margin-left: 37.5%; }
+    .g .m-8-16 { margin-left: 50%; }
+    .g .m-9-16 { margin-left: 62.5%; }
+    .g .m-10-16 { margin-left: 62.5%; }
+    .g .m-11-16 { margin-left: 75%; }
+    .g .m-12-16 { margin-left: 75%; }
+    .g .m-13-16 { margin-left: 87.5%; }
+    .g .m-14-16 { margin-left: 87.5%; }
+    .g .m-15-16 { margin-left: 87.5%; }
+    
 }
 
 /* 
@@ -226,7 +243,16 @@ h3 { margin: 1.5em 0 1.5em; }
     .g .u-11-16 { width: 68.75%; }
     .g .u-13-16 { width: 81.25%; }
     .g .u-15-16 { width: 93.75%; }
-        
+    
+    .g .m-1-16 { margin-left: 6.25%; }
+    .g .m-3-16 { margin-left: 18.75%; }
+    .g .m-5-16 { margin-left: 31.25%; }
+    .g .m-7-16 { margin-left: 43.75%; }
+    .g .m-9-16 { margin-left: 56.25%; }
+    .g .m-11-16 { margin-left: 68.75%; }
+    .g .m-13-16 { margin-left: 81.25%; }
+    .g .m-15-16 { margin-left: 93.75%; }
+            
 }
 
 /* 
