@@ -8,6 +8,10 @@
 *   by Joni Korpi               <http://jonikorpi.com/>
 *   licensed under MIT          <http://opensource.org/licenses/mit-license.php>
 *	
+*   Usage:
+*   Class Prefixes  .g  `group`
+*                   .u  `unit`
+*                   .s  `space`
 */
 /*
 *   Zoomable baseline grid
@@ -47,20 +51,19 @@ body { font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
 *  5.55555% | %  25  50  75  100 | 5.55555%
 *
 */
-.g { margin: 0 5.555555555555555%; } /* `g` for `group` */
+.g { margin: 0 5.555555555555555%; }
 
 h1, h2 { margin: 0.9230769230769231em 0 1.3846153846153846em; }
 h3 { margin: 1.5em 0 1.5em; }
 
-.u, /* `u` for `unit` */ 
-.u-1-16, .u-2-16, .u-3-16, .u-4-16, .u-5-16, .u-6-16, .u-7-16, 
+.u, .u-1-16, .u-2-16, .u-3-16, .u-4-16, .u-5-16, .u-6-16, .u-7-16, 
 .u-8-16, .u-9-16, .u-10-16, .u-11-16, .u-12-16, .u-13-16, .u-14-16, 
 .u-15-16, .u-16-16 { 
     float: left; 
     min-height: 1px; 
     width: 100%; 
     margin: 0;
-    /* Elastic gutters [(0.5 x 2) * 16 = 16px] */
+    /* Elastic gutters [(0.5em x 2) * 16 = 16px] */
     padding: 0 0.5em; 
     /* `border-box` allows width to be calculated independent of padding
      * <http://paulirish.com/2012/box-sizing-border-box-ftw/>
@@ -78,12 +81,12 @@ h3 { margin: 1.5em 0 1.5em; }
 
 /*
 *   If this is IE6- or IE7 w/o JS on, then serve up a default single
-*   column layout using Modernizr classes.
+*   column layout via conditional comment classes.
 */
 .lt-ie7 body, 
 .no-js.lt-ie8 body { width: 40em; margin: 0 auto; font-size: 1.0625em; }
 .lt-ie7 body .g .u, 
-.no-js.lt-ie8 body .g .u { float: none !important; width: 100%; !important; }
+.no-js.lt-ie8 body .g .u { float: none !important; width: 100% !important; margin: 0px !important; }
 .lt-ie7 h1, 
 .no-js.lt-ie8 h1 { font-size: 2.625em; line-height: 1.1428571428571428em;/* 42px / 48px */ margin: 1.1428571428571428em 0 0.5714285714285714em; }
 
@@ -153,21 +156,21 @@ h3 { margin: 1.5em 0 1.5em; }
     .g .u-14-16 { width: 87.5%; }
     .g .u-15-16 { width: 87.5%; }
     
-    .g .m-1-16 { margin-left: 12.5%; }
-    .g .m-2-16 { margin-left: 12.5%; }
-    .g .m-3-16 { margin-left: 12.5%; }
-    .g .m-4-16 { margin-left: 25%; }
-    .g .m-5-16 { margin-left: 25%; }
-    .g .m-6-16 { margin-left: 37.5%; }
-    .g .m-7-16 { margin-left: 37.5%; }
-    .g .m-8-16 { margin-left: 50%; }
-    .g .m-9-16 { margin-left: 62.5%; }
-    .g .m-10-16 { margin-left: 62.5%; }
-    .g .m-11-16 { margin-left: 75%; }
-    .g .m-12-16 { margin-left: 75%; }
-    .g .m-13-16 { margin-left: 87.5%; }
-    .g .m-14-16 { margin-left: 87.5%; }
-    .g .m-15-16 { margin-left: 87.5%; }
+    .g .s-1-16 { margin-left: 12.5%; }
+    .g .s-2-16 { margin-left: 12.5%; }
+    .g .s-3-16 { margin-left: 12.5%; }
+    .g .s-4-16 { margin-left: 25%; }
+    .g .s-5-16 { margin-left: 25%; }
+    .g .s-6-16 { margin-left: 37.5%; }
+    .g .s-7-16 { margin-left: 37.5%; }
+    .g .s-8-16 { margin-left: 50%; }
+    .g .s-9-16 { margin-left: 62.5%; }
+    .g .s-10-16 { margin-left: 62.5%; }
+    .g .s-11-16 { margin-left: 75%; }
+    .g .s-12-16 { margin-left: 75%; }
+    .g .s-13-16 { margin-left: 87.5%; }
+    .g .s-14-16 { margin-left: 87.5%; }
+    .g .s-15-16 { margin-left: 87.5%; }
     
 }
 
@@ -234,7 +237,7 @@ h3 { margin: 1.5em 0 1.5em; }
 
     .g .u { clear: none !important; }
     
-    .g .u:first-child { margin-left: 0%; }
+    /* .g .u:first-child { margin-left: 0%; } */
     .g .u-1-16 { width: 6.25%; }
     .g .u-3-16 { width: 18.75%; }
     .g .u-5-16 { width: 31.25%; }
@@ -244,14 +247,14 @@ h3 { margin: 1.5em 0 1.5em; }
     .g .u-13-16 { width: 81.25%; }
     .g .u-15-16 { width: 93.75%; }
     
-    .g .m-1-16 { margin-left: 6.25%; }
-    .g .m-3-16 { margin-left: 18.75%; }
-    .g .m-5-16 { margin-left: 31.25%; }
-    .g .m-7-16 { margin-left: 43.75%; }
-    .g .m-9-16 { margin-left: 56.25%; }
-    .g .m-11-16 { margin-left: 68.75%; }
-    .g .m-13-16 { margin-left: 81.25%; }
-    .g .m-15-16 { margin-left: 93.75%; }
+    .g .s-1-16 { margin-left: 6.25%; }
+    .g .s-3-16 { margin-left: 18.75%; }
+    .g .s-5-16 { margin-left: 31.25%; }
+    .g .s-7-16 { margin-left: 43.75%; }
+    .g .s-9-16 { margin-left: 56.25%; }
+    .g .s-11-16 { margin-left: 68.75%; }
+    .g .s-13-16 { margin-left: 81.25%; }
+    .g .s-15-16 { margin-left: 93.75%; }
             
 }
 
