@@ -407,3 +407,31 @@
         }
     }
 }());
+
+(function() {
+/**
+ *  @link http://css-tricks.com/snippets/javascript/error-free-firebug-logging/#comment-82967 
+ */
+// Q.log(84, "count", "info"); -> initial number would your rownumber, which is the whole idea here
+// Q.log(77, $("#div"), "info");
+// Q.log(99, "something happened!!!", "error");
+// Q.log(1, "time"); -> Q.log(1, "timeEnd"); -> 1 can also be a string, but keep it equal and unique
+var Q = {}; //An empty object literal for holding the function
+Q.log = function( rowNum, obj, consoleMethod ) {
+    if ( window.console && window.console.firebug && window.console.firebug.replace(/^\s\s*/, '').replace(/\s\s*$/, '' ) !== '') {
+        if ( typeof consoleMethod === "string" && typeof console[consoleMethod] === "function" ) {
+            if ( typeof obj === "string" && obj === "count" ) {
+                console.count("Row: " + rowNum + " | Counter ");
+            } else {
+                console[consoleMethod]("Row: " + rowNum + " ", obj);
+            }
+        } else if ( typeof obj === "string" && obj === "time" ) {
+            console.time("Profile " + rowNum);
+        } else if ( typeof obj === "string" && obj === "timeEnd" ) {
+            console.timeEnd("Profile " + rowNum);
+        } else {
+            console.log(obj);
+        }
+    }
+}
+}());
