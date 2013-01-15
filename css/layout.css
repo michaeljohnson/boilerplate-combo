@@ -1,29 +1,43 @@
 /*
 *
-*   Grid System (0.9.0)         <http://theplasticfactory.us/gs/>
-*   by Michael Johnson          <http://theplasticfactory.us/>
+*   Grid System (0.9.1)     <http://theplasticfactory.us/gs/>
+*   by Michael Johnson      <http://theplasticfactory.us/>
 *
-*   Based on:
-*   Golden Grid System (1.01)   <http://goldengridsystem.com/>
-*   by Joni Korpi               <http://jonikorpi.com/>
-*   licensed under MIT          <http://opensource.org/licenses/mit-license.php>
+*   A twelve-column responsive grid layout inspired by Joni Korpi's GGS.
 *	
 *   Usage:
-*   Class Prefixes  .g  `group`
-*                   .u  `unit`
-*                   .s  `space`
+*   Class Semantics  .g  `group`
+*                    .u  `unit`
+*                    .s  `space`
+*
+*   Default Breakpoints
+*   Add or remove to suit, For example, you may want to go directly 
+*   from 1 col to 12. Remember to adjust container widths to your design. 
+*   Defaults are only a guideline, and otherwise arbitrary.
+*
+*   Screen  |   .container  |   Columns
+*   -----------------------------------
+*   < 768       100%            1 
+*   768         724             2
+*   1024        940             12
+*   1200        1170            12
+*   
 */
+
 /*
 *   Zoomable baseline grid
-*	type size presets
+*   type size presets
 */
 body { font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
-.small { font-size: 0.8125em; line-height: 1.3846153846153846em;/* 13px / 18px */ }
-.normal, h3 { font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
-.large, h2, h1 { font-size: 1.625em; line-height: 1.3846153846153846em;/* 26 / 36px */ }
-.huge { font-size: 2.625em; line-height: 1.1428571428571428em;/* 42px / 48px */ }
-.massive { font-size: 4.25em; line-height: 1.0588235294117647em;/* 68px / 72px */ }
-.gigantic { font-size: 6.875em; line-height: 1.0909090909090908em;/* 110px / 120px */ }
+
+/*
+*   Container, fixed or fluid
+*   - Mobile first default is `auto`
+*   - Set your preferred container widths under
+*     @media queries below
+*/
+.container { width: auto; min-width: 20em;/* 320px */ margin: 0 auto; }
+.container-fluid { width: 100%; }
 
 /*
 *   Add clearfix to our wrapper by default as most units are floated
@@ -37,34 +51,24 @@ body { font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
 *   `no-fold` helper class on `g` element to prevent 
 *   auto-wrapping of elements from :nth-child.
 */
-.no-fold .u, .no-fold .u-1-16, .no-fold .u-2-16, .no-fold .u-3-16, 
-.no-fold .u-4-16, .no-fold .u-5-16, .no-fold .u-6-16, .no-fold .u-7-16, 
-.no-fold .u-8-16, .no-fold .u-9-16, .no-fold .u-10-16, .no-fold .u-11-16, 
-.no-fold .u-12-16, .no-fold .u-13-16, .no-fold .u-14-16, .no-fold .u-15-16, 
-.no-fold .u-16-16 { clear: none !important; }
+.no-fold .u, .no-fold .u-1-12, .no-fold .u-2-12, .no-fold .u-3-12, 
+.no-fold .u-4-12, .no-fold .u-5-12, .no-fold .u-6-12, .no-fold .u-7-12, 
+.no-fold .u-8-12, .no-fold .u-9-12, .no-fold .u-10-12, .no-fold .u-11-12, 
+.no-fold .u-12-12 { clear: none !important; }
 
 /*
-*
-*  Four-column grid active
-*  ----------------------------------------
-*  Margin   | #  1   2   3   4   |   Margin
-*  5.55555% | %  25  50  75  100 | 5.55555%
-*
+*   Defaults: Mobile first
 */
-.g { margin: 0 5.555555555555555%; }
+.g { margin: 0 -0.5em; } /* Match gutters on .u */
+.container-fluid .g { margin: 0 5.555555555555555%; } /* Margin size is arbitrary */
 
-h1, h2 { margin: 0.9230769230769231em 0 1.3846153846153846em; }
-h3 { margin: 1.5em 0 1.5em; }
-
-.u, .u-1-16, .u-2-16, .u-3-16, .u-4-16, .u-5-16, .u-6-16, .u-7-16, 
-.u-8-16, .u-9-16, .u-10-16, .u-11-16, .u-12-16, .u-13-16, .u-14-16, 
-.u-15-16, .u-16-16 { 
+.u, [class*="u-"], .u-1-12, .u-2-12, .u-3-12, .u-4-12, .u-5-12, .u-6-12, .u-7-12, 
+.u-8-12, .u-9-12, .u-10-12, .u-11-12, .u-12-12 { 
     float: left; 
     min-height: 1px; 
     width: 100%; 
     margin: 0;
-    /* Elastic gutters [(0.5em x 2) * 16 = 16px] */
-    padding: 0 0.5em; 
+    padding: 0 0.5em; /* Elastic gutters [(0.5em x 2) * 16 = 16px] */
     /* `border-box` allows width to be calculated independent of padding
      * <http://paulirish.com/2012/box-sizing-border-box-ftw/>
      * <http://html5please.com/#box-sizing>
@@ -72,143 +76,107 @@ h3 { margin: 1.5em 0 1.5em; }
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    /* `box-sizing` doesn't work in IE6-7, so we use a polyfill
+    /* `box-sizing` isn't supported in IE6-7, so we use a polyfill
      * <https://github.com/Schepp/box-sizing-polyfill>
     */
     *behavior: url(/js/vendor/boxsizing.htc);
 }
-.u-16-16 { float: none !important; width: 100%; }
+.u-12-12 { float: none !important; width: 100%; }
 
 /*
-*   If this is IE6- or IE7 w/o JS on, then serve up a default single
+*   If this is IE6- or IE7 w/o JS, fallback to a single
 *   column layout via conditional comment classes.
 */
 .lt-ie7 body, 
 .no-js.lt-ie8 body { width: 40em; margin: 0 auto; font-size: 1.0625em; }
 .lt-ie7 body .g .u, 
 .no-js.lt-ie8 body .g .u { float: none !important; width: 100% !important; margin: 0px !important; }
-.lt-ie7 h1, 
-.no-js.lt-ie8 h1 { font-size: 2.625em; line-height: 1.1428571428571428em;/* 42px / 48px */ margin: 1.1428571428571428em 0 0.5714285714285714em; }
 
-/* 
-@media screen and (min-width: 640px) 
+/*
+*
+*  Two-column grid 
+*  --------------------------------
+*  Margin   | #  1   2   |   Margin
+*  xxx%     | %  50  50  |   xxx%
+*
 */
-@media screen and (min-width: 40em) {
+/* 
+@media screen and (min-width: 768px) 
+*/
+@media screen and (min-width: 48em) {
 
-    body { font-size: 1.0625em; } /* Zoom baseline grid to 17/16 = 1.0625 */
-    h1 { font-size: 2.625em; line-height: 1.1428571428571428em;/* 42px / 48px */ margin: 1.1428571428571428em 0 0.5714285714285714em; }
+    .container { width: 45.25em; } /* 724px */
     
     /* We use selectivizr.js for this to work in IE6-8,
      * If no JS, would need to manually clear for these browsers.
     */
-    .g .u:nth-child(odd) { clear: left; }
+    .g .u:nth-child(odd), .g [class*="u-"]:nth-child(odd) { clear: left; }
     
-    .g .u-1-16 { width: 50%; }
-    .g .u-2-16 { width: 50%; }
-    .g .u-3-16 { width: 50%; }
-    .g .u-4-16 { width: 50%; }
-    .g .u-5-16 { width: 50%; }
-    .g .u-6-16 { width: 50%; }
-    .g .u-7-16 { width: 50%; }
-    .g .u-8-16 { width: 50%; }
-    .g .u-9-16 { width: 50%; }
-    .g .u-10-16 { width: 50%; }
-    .g .u-11-16 { width: 50%; }
-    .g .u-12-16 { width: 50%; }
-    .g .u-13-16 { width: 100%; }
-    .g .u-14-16 { width: 100%; }
-    .g .u-15-16 { width: 100%; }
+    .g .u-1-12 { width: 50%; }
+    .g .u-2-12 { width: 50%; }
+    .g .u-3-12 { width: 50%; }
+    .g .u-4-12 { width: 50%; }
+    .g .u-5-12 { width: 50%; }
+    .g .u-6-12 { width: 50%; }
+    .g .u-7-12 { width: 50%; }
+    .g .u-8-12 { width: 50%; }
+    .g .u-9-12 { width: 50%; }
+    .g .u-10-12 { width: 50%; }
+    .g .u-11-12 { width: 50%; }
 
 }
 
 /*
 *
-*   Eight-column grid active
-*   ----------------------------------------------------------------------
-*   Margin   | #  1     2     3     4     5     6     7     8   |   Margin
-*   5.55555% | %  12.5  25.0  37.5  50.0  62.5  75.0  87.5  100 | 5.55555%
-*	
+*   Twelve-column grid
+*   -----------------------------------------------------------------------------------------------
+*   Margin   | #  1     2     3     4     5     6     7     8     9     10    11    12    |   Margin
+*   xxx%     | %  8.33  16.66  18.75 25.0  31.25 50  43.75 50.0  56.25 62.5  68.75 100.00 |   xxx%
 *
 */
 /* 
-@media screen and (min-width: 720px) 
+@media screen and (min-width: 1024px) 
 */
-@media screen and (min-width: 45em) {
+@media screen and (min-width: 64em) {
+    
+    .container { width: 58.75em; } /* 940px */
 
-    body { font-size: 1em; } /* Reset baseline grid to 16/16 = 1 */
+    .g .u, .g [class*="u-"] { clear: none !important; }
     
-    .g .u:nth-child(odd) { clear: none; }
-    .g .u:nth-child(9n+0), 
-    .g .u-1-16:nth-child(9) { clear: left; }
+    .g .u-1-12 { width: 8.333333333333334%; word-wrap: break-word; }
+    .g .u-2-12 { width: 16.666666666666667%; }
+    .g .u-3-12 { width: 25%; }
+    .g .u-4-12 { width: 33.333333333333334%; }
+    .g .u-5-12 { width: 41.666666666666667%; }
+    .g .u-6-12 { width: 50%; }
+    .g .u-7-12 { width: 58.333333333333334%; }
+    .g .u-8-12 { width: 66.666666666666667%; }
+    .g .u-9-12 { width: 75%; }
+    .g .u-10-12 { width: 83.333333333333334%; }
+    .g .u-11-12 { width: 91.666666666666667%; }
     
-    .g .u-1-16 { width: 12.5%; word-wrap: break-word; }
-    .g .u-2-16 { width: 12.5%; }
-    .g .u-3-16 { width: 12.5%; }
-    .g .u-4-16 { width: 25%; }
-    .g .u-5-16 { width: 25%; }
-    .g .u-6-16 { width: 37.5%; }
-    .g .u-7-16 { width: 37.5%; }
-    .g .u-9-16 { width: 62.5%; }
-    .g .u-10-16 { width: 62.5%; }
-    .g .u-11-16 { width: 75%; }
-    .g .u-12-16 { width: 75%; }
-    .g .u-13-16 { width: 87.5%; }
-    .g .u-14-16 { width: 87.5%; }
-    .g .u-15-16 { width: 87.5%; }
-    
-    .g .s-1-16 { margin-left: 12.5%; }
-    .g .s-2-16 { margin-left: 12.5%; }
-    .g .s-3-16 { margin-left: 12.5%; }
-    .g .s-4-16 { margin-left: 25%; }
-    .g .s-5-16 { margin-left: 25%; }
-    .g .s-6-16 { margin-left: 37.5%; }
-    .g .s-7-16 { margin-left: 37.5%; }
-    .g .s-8-16 { margin-left: 50%; }
-    .g .s-9-16 { margin-left: 62.5%; }
-    .g .s-10-16 { margin-left: 62.5%; }
-    .g .s-11-16 { margin-left: 75%; }
-    .g .s-12-16 { margin-left: 75%; }
-    .g .s-13-16 { margin-left: 87.5%; }
-    .g .s-14-16 { margin-left: 87.5%; }
-    .g .s-15-16 { margin-left: 87.5%; }
-    
-}
-
-/* 
-@media screen and (min-width: 888px) 
-*/
-@media screen and (min-width: 55.5em) {
-
-    body { font-size: 1.0625em; } /* Zoom baseline grid to 17/16 = 1.0625 */
+    .g .s-1-12 { margin-left: 8.333333333333334%; }
+    .g .s-2-12 { margin-left: 16.666666666666667%; }
+    .g .s-3-12 { margin-left: 25%; }
+    .g .s-4-12 { margin-left: 33.333333333333334%; }
+    .g .s-5-12 { margin-left: 41.666666666666667%; }
+    .g .s-6-12 { margin-left: 50%; }
+    .g .s-7-12 { margin-left: 58.333333333333334%; }
+    .g .s-8-12 { margin-left: 66.666666666666667%; }
+    .g .s-9-12 { margin-left: 75%; }
+    .g .s-10-12 { margin-left: 83.333333333333334%; }
+    .g .s-11-12 { margin-left: 91.666666666666667%; }
 
 }
 
-/* 
-@media screen and (min-width: 984px) 
-*/
-@media screen and (min-width: 61.5em) {
-
-    body { font-size: 1em; } /* Reset baseline grid to 16/16 = 1.0 */
-
-}
 
 /* 
 @media screen and (min-width: 1200px) 
 */
 @media screen and (min-width: 75em) {
     
-    body { font-size: 1.0625em; } /* Zoom baseline grid to 17/16 = 1.0625 */
-    .g { margin: 0 10.478888888888884%; /* 16.666666666666664% */ }
-
-}
-
-/* 
-@media screen and (min-width: 1392px) 
-*/
-@media screen and (min-width: 87em) {
-
-    body { font-size: 1em; } /* Reset baseline grid to 16/16 = 1.0 */
-    .g { margin: 0 23.78%; } /* 27.77777777777778% */
+    .container { width: 73.125em; } /* 1170px */
+    .container-fluid .g { margin: 0 10.478888888888884%; }
 
 }
 
@@ -217,45 +185,8 @@ h3 { margin: 1.5em 0 1.5em; }
 */
 @media screen and (min-width: 105em) {
 
-    body { font-size: 1.0625em; } /* Zoom baseline grid to 17/16 = 1.0625 */
-
-}
-
-/*
-*
-*   Sixteen-column grid active
-*   ----------------------------------------------------------------------------------------------------------------------
-*   Margin   | #  1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16  |   Margin
-*   5.55555% | %  6.25  12.5  18.75 25.0  31.25 37.5  43.75 50.0  56.25 62.5  68.75 75.0  81.25 87.5  93.75 100 | 5.55555%
-*	
-*
-*/
-/* 
-@media screen and (min-width: 1872px) 
-*/
-@media screen and (min-width: 117em) {
-
-    .g .u { clear: none !important; }
+    .container-fluid .g { margin: 0 20%; }
     
-    /* .g .u:first-child { margin-left: 0%; } */
-    .g .u-1-16 { width: 6.25%; }
-    .g .u-3-16 { width: 18.75%; }
-    .g .u-5-16 { width: 31.25%; }
-    .g .u-7-16 { width: 43.75%; }
-    .g .u-9-16 { width: 56.25%; }
-    .g .u-11-16 { width: 68.75%; }
-    .g .u-13-16 { width: 81.25%; }
-    .g .u-15-16 { width: 93.75%; }
-    
-    .g .s-1-16 { margin-left: 6.25%; }
-    .g .s-3-16 { margin-left: 18.75%; }
-    .g .s-5-16 { margin-left: 31.25%; }
-    .g .s-7-16 { margin-left: 43.75%; }
-    .g .s-9-16 { margin-left: 56.25%; }
-    .g .s-11-16 { margin-left: 68.75%; }
-    .g .s-13-16 { margin-left: 81.25%; }
-    .g .s-15-16 { margin-left: 93.75%; }
-            
 }
 
 /* 
@@ -264,5 +195,7 @@ h3 { margin: 1.5em 0 1.5em; }
 @media screen and (min-width: 130em) {
 
     body { max-width: 160em; font-size: 1.125em; } /* Zoom baseline grid to 18/16 = 1.125 */
+    .container { width: 80em; } /* 1280px */
+    .container-fluid .g { margin: 0 23.78%; }
     
 }
