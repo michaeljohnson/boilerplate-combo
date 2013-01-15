@@ -28,7 +28,7 @@
 *   Zoomable baseline grid
 *   type size presets
 */
-body { font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
+body { padding: 0 1em; font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
 
 /*
 *   Container, fixed or fluid
@@ -36,7 +36,7 @@ body { font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
 *   - Set your preferred container widths under
 *     @media queries below
 */
-.container { width: auto; min-width: 20em;/* 320px */ margin: 0 auto; }
+.container { width: auto; min-width: 10em;/* 160px */ margin: 0 auto; }
 .container-fluid { width: 100%; }
 
 /*
