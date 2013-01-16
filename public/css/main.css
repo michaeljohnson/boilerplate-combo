@@ -101,7 +101,7 @@ img { height: auto !important; }
    Custom site styles
    ========================================================================== */
 
-.container, .container-fluid { background-color: #ccc; }
+.container, .container-fluid .g { background-color: #ccc; }
 .g { margin-bottom: 1em !important; }
 [class*="u-"] { background-color: #eee; border-radius: 3px 3px 3px 3px; text-align: center; }
 [class*="u-"] .inner { border: 1px solid #000; border-radius: 3px 3px 3px 3px; line-height: 2.5em; min-height: 2.5em; text-align: center; }
