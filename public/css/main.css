@@ -112,6 +112,15 @@ footer { margin-top: 2em; }
    ========================================================================== */
 
 /*
+ * A few custom helper classes
+ */
+
+.image-map { z-index: 999; position: absolute; display: block; text-indent: -999em; } /* CSS-based image map links */
+.ir .image-map, .ir.image-map { text-indent: 0em; }
+.expander-control { cursor: pointer; } /* For our in-house expand/collapse js function */
+.recess { text-shadow: 1px 1px white, -1px -1px #444; } /* Nice recessed-looking text */
+
+/*
  * Image replacement
  */
 
