@@ -1,10 +1,9 @@
+/*! Grid System v0.9.6 | MIT License | theplasticfactory.us/gs */
 /*
-*
-*   Grid System (0.9.5)     <http://theplasticfactory.us/gs/>
-*   by Michael Johnson      <http://theplasticfactory.us/>
+*   by Michael Johnson  <http://theplasticfactory.us/>
 *
 *   A twelve-column responsive grid layout inspired by Joni Korpi's GGS.
-*	
+*  
 *   Usage:
 *   Class Semantics  .g  `group`
 *                    .u  `unit`
@@ -12,16 +11,17 @@
 *
 *   Default Breakpoints
 *   Add or remove to suit, For example, you may want to go to a 2 column 
-*   layout at 724. Remember to adjust container widths to your design. 
+*   layout at 768. Remember to adjust container widths to your design. 
 *   Defaults are only a guideline based on Twitter Bootstrap, 
 *       and are otherwise arbitrary.
 *
 *   Screen  |   .container  |   Columns
 *   -----------------------------------
 *   160-767     100%            1 
-*   768-979     724             12
-*   980-1199    940             12
-*   1200        1170            12
+*   768-1023    744             12
+*   1024-1199   1000            12
+*   1200-1599   1176            12
+*   1600+       1440            12
 *   
 */
 
@@ -29,7 +29,7 @@
 *   Zoomable baseline grid
 *   type size presets
 */
-body { padding: 0 0.5em; font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
+body { font-size: 1em; line-height: 1.5; /* 16px / 24px */ }
 
 /*
 *   Apply a natural box layout model with universal selector
@@ -49,8 +49,8 @@ body { padding: 0 0.5em; font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
 *   - Set your preferred container widths under
 *     @media queries below
 */
-.container { width: auto; min-width: 10em;/* 160px */ margin: 0 auto; }
-.container-fluid { width: 100%; padding-left: 0px !important; padding-right: 0px !important; }
+.container { display: block; width: auto; min-width: 10em;/* 160px */ margin: 0 auto; }
+.container-fluid { display: block; width: 100%; padding-left: 0px !important; padding-right: 0px !important; }
 
 /*
 *   Add clearfix to our wrapper by default as most units are floated
@@ -83,7 +83,7 @@ body { padding: 0 0.5em; font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
     padding: 0;
     word-wrap: break-word;
 }
-.u-12-12 { float: none !important; width: 100%; }
+.u-12-12 { float: none !important; width: 100% !important; }
 
 /*
 *   For IE6- or IE7 w/o JS, fallback to a single
@@ -92,7 +92,8 @@ body { padding: 0 0.5em; font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
 .lt-ie7 body, .no-js.lt-ie8 body { width: 40em; margin: 0 auto; font-size: 1.0625em; }
 .lt-ie7 .container, .no-js.lt-ie8 .container { width: auto !important; }
 .lt-ie7 .g, .no-js.lt-ie8 .g { margin-left: 0 !important; margin-right: 0 !important; }
-.lt-ie7 .g .u, .no-js.lt-ie8 .g .u { float: none !important; width: 100% !important; margin: 0px !important; }
+.lt-ie7 .g .u, .no-js.lt-ie8 .g .u, 
+.lt-ie7 .g > [class*="u-"], .no-js.lt-ie8 .g > [class*="u-"] { float: none !important; width: 100% !important; margin: 0px !important; }
 
 /*
 *
@@ -120,6 +121,7 @@ body { padding: 0 0.5em; font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
     
     .g .u:nth-child(odd), .g > [class*="u-"]:nth-child(odd) { clear: left; }
     
+    .g > [class*="u-"] { width: 50%; }
     .g .u-1-12 { width: 50%; }
     .g .u-2-12 { width: 50%; }
     .g .u-3-12 { width: 50%; }
@@ -147,21 +149,29 @@ body { padding: 0 0.5em; font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
 */
 @media screen and (min-width: 48em) {
     
-    .container { width: 45.25em; } /* 724px */
+    .container { width: 46.5em; } /* 744px */
 
     .g .u, .g [class*="u-"] { clear: none !important; }
     
     .g .u-1-12 { width: 8.334%; }
     .g .u-2-12 { width: 16.667%; }
+    .site-footer .u-2-12 { width: 100%; }
     .g .u-3-12 { width: 25%; }
-    .g .u-4-12 { width: 33.334%; }
+    .g .u-4-12 { width: 33.333%; }
     .g .u-5-12 { width: 41.667%; }
     .g .u-6-12 { width: 50%; }
     .g .u-7-12 { width: 58.334%; }
     .g .u-8-12 { width: 66.667%; }
+    .site-footer .u-8-12 { width: 100%; }
     .g .u-9-12 { width: 75%; }
     .g .u-10-12 { width: 83.334%; }
     .g .u-11-12 { width: 91.667%; }
+
+    .g .u-1097-1910 { width: 57.434%; }
+    .g .u-813-1910 { width: 42.566%; }
+
+    .g .u-1051-1910 { width: 55.183%; }
+    .g .u-856-1910 { width: 44.817%; }
     
     .g .s-1-12 { margin-left: 8.334%; }
     .g .s-2-12 { margin-left: 16.667%; }
@@ -178,11 +188,14 @@ body { padding: 0 0.5em; font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
 }
 
 /* 
-@media screen and (min-width: 980px) 
+@media screen and (min-width: 1024px) 
 */
-@media screen and (min-width: 61.25em) {
+@media screen and (min-width: 64em) {
     
-    .container { width: 58.75em; } /* 940px */
+    .container { width: 62.5em; } /* 1000px */
+
+    .site-footer .u-2-12 { width: 16.667%; }
+    .site-footer .u-8-12 { width: 66.667%; }
     
 }
 
@@ -191,18 +204,18 @@ body { padding: 0 0.5em; font-size: 1em; line-height: 1.5em;/* 16px / 24px */ }
 */
 @media screen and (min-width: 75em) {
     
-    .container { width: 73.125em; } /* 1170px */
+    .container { width: 73.5em; } /* 1176px */
     .container-fluid .g { margin: 0 15%; }
 
 }
 
 /* 
-@media screen and (min-width: 2080px) 
+@media screen and (min-width: 1600px) 
  */
-@media screen and (min-width: 130em) {
+@media screen and (min-width: 100em) {
 
-    body { max-width: 160em; font-size: 1.125em; } /* Zoom baseline grid to 18/16 = 1.125 */
-    .container { /*width: 80em;*/ } /* 1280px */
+    body { font-size: 1.125em; } /* Zoom baseline grid to 18px */
+    .container { width: 83.333333333333333em; } /* 1500px @ 1em = 18px */
     .container-fluid .g { margin: 0 20%; }
     
 }
