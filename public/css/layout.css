@@ -1,6 +1,6 @@
-/*! Grid System v0.9.6.1 | MIT License | theplasticfactory.us/gs */
+/*! Grid System v0.9.6.1 | MIT License | public-business.co */
 /*
-*   by Michael Johnson  <http://theplasticfactory.us/>
+*   by Michael Johnson  <hello@public-business.co>
 *
 *   A twelve-column responsive grid layout inspired by Joni Korpi's GGS.
 *  
@@ -29,7 +29,7 @@
 *   Zoomable baseline grid
 *   type size presets
 */
-body { font-size: 1em; line-height: 1.5; /* 16px / 24px */ }
+html { font-size: 1em; line-height: 1.5; /* 16px / 24px */ }
 
 /*
 *   Apply a natural box layout model with universal selector
@@ -38,10 +38,14 @@ body { font-size: 1em; line-height: 1.5; /* 16px / 24px */ }
 *    - <http://html5please.com/#box-sizing>
 *   `box-sizing` isn't supported in IE6-7, so we use a polyfill
 *    - <https://github.com/Schepp/box-sizing-polyfill>
+*   Slightly new take / syntax:
+*    - <http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/>
 */
-* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; 
-    *behavior: url(/assets/js/vendor/boxsizing.htc); /* Path must be relative to html doc, not css. */
+html { 
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; 
+    *behavior: url(/public/assets/js/vendor/boxsizing.htc); /* Path must be relative to html doc, not css. */
 }
+*, *:before, *:after { box-sizing: inherit; }
 
 /*
 *   Container, fixed or fluid
@@ -214,7 +218,7 @@ body { font-size: 1em; line-height: 1.5; /* 16px / 24px */ }
  */
 @media screen and (min-width: 100em) {
 
-    body { font-size: 1.125em; } /* Zoom baseline grid to 18px */
+    html { font-size: 1.125em; } /* Zoom baseline grid to 18px */
     .container { width: 83.333333333333333em; } /* 1500px @ 1em = 18px */
     .container-fluid .g { margin: 0 20%; }
     
